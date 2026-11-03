@@ -46,4 +46,22 @@ public class DivTest {
     public void testDivisionByZero() {
         calculator.div(10L, 0L);
     }
+
+    @Test(dataProvider = "divDoubleData", groups = "arithmetic")
+    public void testDivDouble(double a, double b, double expected) {
+        double result = calculator.div(a, b);
+        Assert.assertEquals(result, expected, 0.000001);
+    }
+
+    @DataProvider(name = "divDoubleData")
+    public Object[][] provideDivDoubleData() {
+        return new Object[][] {
+                {10.5, 2.0, 5.25},
+                {-10.5, 2.0, -5.25},
+                {-10.5, -2.0, 5.25},
+                {0.0, 3.0, 0.0},
+                {1.0, 4.0, 0.25},
+                {7.5, 2.5, 3.0}
+        };
+    }
 }

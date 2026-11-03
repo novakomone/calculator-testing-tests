@@ -34,4 +34,22 @@ public class MultTest {
                 {Long.MAX_VALUE, 1L, Long.MAX_VALUE}
         };
     }
+
+    @Test(dataProvider = "multDoubleData", groups = "arithmetic")
+    public void testMultDouble(double a, double b, double expected) {
+        double result = calculator.mult(a, b);
+        Assert.assertEquals(result, expected, 0.000001);
+    }
+
+    @DataProvider(name = "multDoubleData")
+    public Object[][] provideMultDoubleData() {
+        return new Object[][] {
+                {2.5, 4.0, 10.0},
+                {-2.5, 4.0, -10.0},
+                {-2.5, -4.0, 10.0},
+                {0.0, 5.7, 0.0},
+                {0.1, 0.2, 0.02},
+                {1.5, 2.5, 3.75}
+        };
+    }
 }
